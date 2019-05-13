@@ -23,6 +23,7 @@ public class GalleryRefresh extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         try {
           if (action.equals("refresh")) {
+            String filePath = _checkFilePath(args.getString(0));
             cordova.getActivity().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(new File(filePath))));            
             callbackContext.success("Gallery successfully updated for provided path");
             return true;
